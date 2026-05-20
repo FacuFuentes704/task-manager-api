@@ -24,5 +24,5 @@ class Task(Base):
     priority = Column(Enum(Priority), default=Priority.low)
     due_date = Column(Date, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True, index=True)

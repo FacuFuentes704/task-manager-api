@@ -16,6 +16,16 @@ class UserResponse(BaseModel):
     email: EmailStr
     created_at: datetime
     id: int
+    is_active: bool
 
     class Config:
         from_attributes = True
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[str] = None
