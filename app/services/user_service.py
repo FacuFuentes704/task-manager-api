@@ -27,6 +27,6 @@ def login_user(db: Session, user_data: UserLogin):
     if resultado.is_active is False:
         raise HTTPException(status_code=403, detail="Usuario inactivo")
     token = create_access_token({"user_id": resultado.id})
-    return token
+    return {"access_token": token, "token_type": "bearer"}
 
     
