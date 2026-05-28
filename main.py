@@ -5,6 +5,7 @@ from app.routers.tasks import tasks_router
 from app.models.user import User
 from app.models.task import Task
 from app.models.category import Category
+from app.routers.category import category_router
 
 app = FastAPI()
 
@@ -13,3 +14,4 @@ Base.metadata.create_all(bind=engine)
 app.include_router(users_router)
 app.include_router(auth_router)
 app.include_router(tasks_router)
+app.include_router(category_router)
