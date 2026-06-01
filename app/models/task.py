@@ -3,6 +3,7 @@ from datetime import datetime
 from app.database import Base
 from sqlalchemy import Enum 
 import enum
+from sqlalchemy.orm import relationship
 
 class Status(str, enum.Enum):
     pending = "pending"
@@ -26,3 +27,5 @@ class Task(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
     category_id = Column(Integer, ForeignKey("categories.id"), nullable=True, index=True)
+
+    category = relationship("Category", back_populates="tasks")
