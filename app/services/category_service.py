@@ -34,5 +34,11 @@ def delete_category(db: Session, user_id: int, category_id: int):
     db.delete(resultado)
     db.commit()
     return
+
+def get_category_with_tasks(db: Session, user_id: int, category_id: int):
+    respuesta = db.query(Category).filter(Category.id == category_id, Category.user_id == user_id).first()
+    if not respuesta:
+        raise HTTPException(status_code=404, detail="No se encontraron categorias")
+    return respuesta
     
     
