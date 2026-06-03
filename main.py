@@ -6,10 +6,21 @@ from app.models.user import User
 from app.models.task import Task
 from app.models.category import Category
 from app.routers.category import category_router
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 Base.metadata.create_all(bind=engine)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(users_router)
 app.include_router(auth_router)
